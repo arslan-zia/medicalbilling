@@ -1,0 +1,716 @@
+{
+        "packages": [
+                {
+                        "name": "apimatic/core",
+                        "version": "0.3.13",
+                        "version_normalized": "0.3.13.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/apimatic/core-lib-php.git",
+                                "reference": "944678aa7017457daacd9750b96962fb693ea81a"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/apimatic/core-lib-php/zipball/944678aa7017457daacd9750b96962fb693ea81a",
+                                "reference": "944678aa7017457daacd9750b96962fb693ea81a",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "apimatic/core-interfaces": "~0.1.5",
+                                "apimatic/jsonmapper": "^3.1.1",
+                                "ext-curl": "*",
+                                "ext-dom": "*",
+                                "ext-json": "*",
+                                "ext-libxml": "*",
+                                "php": "^7.2 || ^8.0",
+                                "php-jsonpointer/php-jsonpointer": "^3.0.2",
+                                "psr/log": "^1.1.4 || ^2.0.0 || ^3.0.0"
+                        },
+                        "require-dev": {
+                                "phan/phan": "5.4.5",
+                                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                                "squizlabs/php_codesniffer": "^3.5"
+                        },
+                        "time": "2024-12-18T08:29:12+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "Core\\": "src/"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "MIT"
+                        ],
+                        "description": "Core logic and the utilities for the Apimatic's PHP SDK",
+                        "homepage": "https://github.com/apimatic/core-lib-php",
+                        "keywords": [
+                                "apimatic",
+                                "core",
+                                "corelib",
+                                "php"
+                        ],
+                        "support": {
+                                "issues": "https://github.com/apimatic/core-lib-php/issues",
+                                "source": "https://github.com/apimatic/core-lib-php/tree/0.3.13"
+                        },
+                        "install-path": "../apimatic/core"
+                },
+                {
+                        "name": "apimatic/core-interfaces",
+                        "version": "0.1.5",
+                        "version_normalized": "0.1.5.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/apimatic/core-interfaces-php.git",
+                                "reference": "b4f1bffc8be79584836f70af33c65e097eec155c"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/apimatic/core-interfaces-php/zipball/b4f1bffc8be79584836f70af33c65e097eec155c",
+                                "reference": "b4f1bffc8be79584836f70af33c65e097eec155c",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "php": "^7.2 || ^8.0"
+                        },
+                        "time": "2024-05-09T06:32:07+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "CoreInterfaces\\": "src/"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "MIT"
+                        ],
+                        "description": "Definition of the behavior of apimatic/core, apimatic/unirest-php and Apimatic's PHP SDK",
+                        "homepage": "https://github.com/apimatic/core-interfaces-php",
+                        "keywords": [
+                                "apimatic",
+                                "core",
+                                "corelib",
+                                "interface",
+                                "php",
+                                "unirest"
+                        ],
+                        "support": {
+                                "issues": "https://github.com/apimatic/core-interfaces-php/issues",
+                                "source": "https://github.com/apimatic/core-interfaces-php/tree/0.1.5"
+                        },
+                        "install-path": "../apimatic/core-interfaces"
+                },
+                {
+                        "name": "apimatic/jsonmapper",
+                        "version": "3.1.6",
+                        "version_normalized": "3.1.6.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/apimatic/jsonmapper.git",
+                                "reference": "c6cc21bd56bfe5d5822bbd08f514be465c0b24e7"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/apimatic/jsonmapper/zipball/c6cc21bd56bfe5d5822bbd08f514be465c0b24e7",
+                                "reference": "c6cc21bd56bfe5d5822bbd08f514be465c0b24e7",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "ext-json": "*",
+                                "php": "^5.6 || ^7.0 || ^8.0"
+                        },
+                        "require-dev": {
+                                "phpunit/phpunit": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
+                                "squizlabs/php_codesniffer": "^3.0.0"
+                        },
+                        "time": "2024-11-28T09:15:32+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "apimatic\\jsonmapper\\": "src/"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "OSL-3.0"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "Christian Weiske",
+                                        "email": "christian.weiske@netresearch.de",
+                                        "homepage": "http://www.netresearch.de/",
+                                        "role": "Developer"
+                                },
+                                {
+                                        "name": "Mehdi Jaffery",
+                                        "email": "mehdi.jaffery@apimatic.io",
+                                        "homepage": "http://apimatic.io/",
+                                        "role": "Developer"
+                                }
+                        ],
+                        "description": "Map nested JSON structures onto PHP classes",
+                        "support": {
+                                "email": "mehdi.jaffery@apimatic.io",
+                                "issues": "https://github.com/apimatic/jsonmapper/issues",
+                                "source": "https://github.com/apimatic/jsonmapper/tree/3.1.6"
+                        },
+                        "install-path": "../apimatic/jsonmapper"
+                },
+                {
+                        "name": "apimatic/unirest-php",
+                        "version": "4.0.5",
+                        "version_normalized": "4.0.5.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/apimatic/unirest-php.git",
+                                "reference": "e16754010c16be5473289470f129d87a0f41b55e"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/apimatic/unirest-php/zipball/e16754010c16be5473289470f129d87a0f41b55e",
+                                "reference": "e16754010c16be5473289470f129d87a0f41b55e",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "apimatic/core-interfaces": "^0.1.0",
+                                "ext-curl": "*",
+                                "ext-json": "*",
+                                "php": "^7.2 || ^8.0"
+                        },
+                        "require-dev": {
+                                "phan/phan": "5.4.2",
+                                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                                "squizlabs/php_codesniffer": "^3.5"
+                        },
+                        "time": "2023-04-25T14:19:45+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "Unirest\\": "src/"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "MIT"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "Mashape",
+                                        "email": "opensource@mashape.com",
+                                        "homepage": "https://www.mashape.com",
+                                        "role": "Developer"
+                                },
+                                {
+                                        "name": "APIMATIC",
+                                        "email": "opensource@apimatic.io",
+                                        "homepage": "https://www.apimatic.io",
+                                        "role": "Developer"
+                                }
+                        ],
+                        "description": "Unirest PHP",
+                        "homepage": "https://github.com/apimatic/unirest-php",
+                        "keywords": [
+                                "client",
+                                "curl",
+                                "http",
+                                "https",
+                                "rest"
+                        ],
+                        "support": {
+                                "email": "opensource@apimatic.io",
+                                "issues": "https://github.com/apimatic/unirest-php/issues",
+                                "source": "https://github.com/apimatic/unirest-php/tree/4.0.5"
+                        },
+                        "install-path": "../apimatic/unirest-php"
+                },
+                {
+                        "name": "automattic/woocommerce",
+                        "version": "3.1.0",
+                        "version_normalized": "3.1.0.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/woocommerce/wc-api-php.git",
+                                "reference": "d3b292f04c0b3b21dced691ebad8be073a83b4ad"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/woocommerce/wc-api-php/zipball/d3b292f04c0b3b21dced691ebad8be073a83b4ad",
+                                "reference": "d3b292f04c0b3b21dced691ebad8be073a83b4ad",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "ext-curl": "*",
+                                "ext-json": "*",
+                                "php": ">= 7.1.0"
+                        },
+                        "require-dev": {
+                                "overtrue/phplint": "7.4.x-dev",
+                                "phpunit/phpunit": "^8",
+                                "squizlabs/php_codesniffer": "3.*"
+                        },
+                        "time": "2022-03-18T21:46:17+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "Automattic\\WooCommerce\\": [
+                                                "src/WooCommerce"
+                                        ]
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "MIT"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "Claudio Sanches",
+                                        "email": "claudio.sanches@automattic.com"
+                                }
+                        ],
+                        "description": "A PHP wrapper for the WooCommerce REST API",
+                        "keywords": [
+                                "api",
+                                "woocommerce"
+                        ],
+                        "support": {
+                                "issues": "https://github.com/woocommerce/wc-api-php/issues",
+                                "source": "https://github.com/woocommerce/wc-api-php/tree/3.1.0"
+                        },
+                        "install-path": "../automattic/woocommerce"
+                },
+                {
+                        "name": "php-jsonpointer/php-jsonpointer",
+                        "version": "v3.0.2",
+                        "version_normalized": "3.0.2.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/raphaelstolt/php-jsonpointer.git",
+                                "reference": "4428f86c6f23846e9faa5a420c4ef14e485b3afb"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/raphaelstolt/php-jsonpointer/zipball/4428f86c6f23846e9faa5a420c4ef14e485b3afb",
+                                "reference": "4428f86c6f23846e9faa5a420c4ef14e485b3afb",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "php": ">=5.4"
+                        },
+                        "require-dev": {
+                                "friendsofphp/php-cs-fixer": "^1.11",
+                                "phpunit/phpunit": "4.6.*"
+                        },
+                        "time": "2016-08-29T08:51:01+00:00",
+                        "type": "library",
+                        "extra": {
+                                "branch-alias": {
+                                        "dev-master": "2.0.x-dev"
+                                }
+                        },
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-0": {
+                                        "Rs\\Json": "src/"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "MIT"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "Raphael Stolt",
+                                        "email": "raphael.stolt@gmail.com",
+                                        "homepage": "http://raphaelstolt.blogspot.com/"
+                                }
+                        ],
+                        "description": "Implementation of JSON Pointer (http://tools.ietf.org/html/rfc6901)",
+                        "homepage": "https://github.com/raphaelstolt/php-jsonpointer",
+                        "keywords": [
+                                "json",
+                                "json pointer",
+                                "json traversal"
+                        ],
+                        "support": {
+                                "issues": "https://github.com/raphaelstolt/php-jsonpointer/issues",
+                                "source": "https://github.com/raphaelstolt/php-jsonpointer/tree/master"
+                        },
+                        "install-path": "../php-jsonpointer/php-jsonpointer"
+                },
+                {
+                        "name": "picqer/php-barcode-generator",
+                        "version": "v2.4.2",
+                        "version_normalized": "2.4.2.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/picqer/php-barcode-generator.git",
+                                "reference": "e9d39681f617705492b609fc3fc58465ef88e8fd"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/picqer/php-barcode-generator/zipball/e9d39681f617705492b609fc3fc58465ef88e8fd",
+                                "reference": "e9d39681f617705492b609fc3fc58465ef88e8fd",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "ext-mbstring": "*",
+                                "php": "^8.1"
+                        },
+                        "require-dev": {
+                                "phpstan/phpstan": "^1.10",
+                                "phpunit/phpunit": "^9.5"
+                        },
+                        "suggest": {
+                                "ext-bcmath": "Barcode IMB (Intelligent Mail Barcode) needs bcmath extension",
+                                "ext-gd": "For JPG and PNG generators, GD or Imagick is required",
+                                "ext-imagick": "For JPG and PNG generators, GD or Imagick is required"
+                        },
+                        "time": "2024-09-18T08:09:33+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "Picqer\\Barcode\\": "src"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "LGPL-3.0-or-later"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "Nicola Asuni",
+                                        "email": "info@tecnick.com",
+                                        "homepage": "http://nicolaasuni.tecnick.com"
+                                },
+                                {
+                                        "name": "Casper Bakker",
+                                        "email": "info@picqer.com",
+                                        "homepage": "https://picqer.com"
+                                }
+                        ],
+                        "description": "An easy to use, non-bloated, barcode generator in PHP. Creates SVG, PNG, JPG and HTML images from the most used 1D barcode standards.",
+                        "homepage": "https://github.com/picqer/php-barcode-generator",
+                        "keywords": [
+                                "CODABAR",
+                                "Code11",
+                                "Code93",
+                                "EAN13",
+                                "KIX",
+                                "KIXCODE",
+                                "MSI",
+                                "POSTNET",
+                                "Pharma",
+                                "Standard 2 of 5",
+                                "barcode",
+                                "barcode generator",
+                                "code128",
+                                "code39",
+                                "ean",
+                                "html",
+                                "jpeg",
+                                "jpg",
+                                "php",
+                                "png",
+                                "svg",
+                                "upc"
+                        ],
+                        "support": {
+                                "issues": "https://github.com/picqer/php-barcode-generator/issues",
+                                "source": "https://github.com/picqer/php-barcode-generator/tree/v2.4.2"
+                        },
+                        "funding": [
+                                {
+                                        "url": "https://github.com/casperbakker",
+                                        "type": "github"
+                                }
+                        ],
+                        "install-path": "../picqer/php-barcode-generator"
+                },
+                {
+                        "name": "psr/log",
+                        "version": "3.0.2",
+                        "version_normalized": "3.0.2.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/php-fig/log.git",
+                                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "php": ">=8.0.0"
+                        },
+                        "time": "2024-09-11T13:17:53+00:00",
+                        "type": "library",
+                        "extra": {
+                                "branch-alias": {
+                                        "dev-master": "3.x-dev"
+                                }
+                        },
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "Psr\\Log\\": "src"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "MIT"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "PHP-FIG",
+                                        "homepage": "https://www.php-fig.org/"
+                                }
+                        ],
+                        "description": "Common interface for logging libraries",
+                        "homepage": "https://github.com/php-fig/log",
+                        "keywords": [
+                                "log",
+                                "psr",
+                                "psr-3"
+                        ],
+                        "support": {
+                                "source": "https://github.com/php-fig/log/tree/3.0.2"
+                        },
+                        "install-path": "../psr/log"
+                },
+                {
+                        "name": "square/square",
+                        "version": "28.0.1.20230608",
+                        "version_normalized": "28.0.1.20230608",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/square/square-php-sdk.git",
+                                "reference": "42bec211bef27a384b39afbbb977fe3342cb1216"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/square/square-php-sdk/zipball/42bec211bef27a384b39afbbb977fe3342cb1216",
+                                "reference": "42bec211bef27a384b39afbbb977fe3342cb1216",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "apimatic/core": "~0.3.0",
+                                "apimatic/core-interfaces": "~0.1.0",
+                                "apimatic/unirest-php": "^4.0.0",
+                                "ext-json": "*",
+                                "php": "^7.2 || ^8.0"
+                        },
+                        "require-dev": {
+                                "phan/phan": "5.4.2",
+                                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                                "squizlabs/php_codesniffer": "^3.5"
+                        },
+                        "time": "2023-06-14T21:35:50+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "Square\\": "src/"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "MIT"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "Square Developer Platform",
+                                        "email": "developers@squareup.com",
+                                        "homepage": "https://squareup.com/developers"
+                                }
+                        ],
+                        "description": "Use Square APIs to manage and run business including payment, customer, product, inventory, and employee management.",
+                        "homepage": "https://squareup.com/developers",
+                        "keywords": [
+                                "api",
+                                "sdk",
+                                "square"
+                        ],
+                        "support": {
+                                "issues": "https://github.com/square/square-php-sdk/issues",
+                                "source": "https://github.com/square/square-php-sdk/tree/28.0.1.20230608"
+                        },
+                        "install-path": "../square/square"
+                },
+                {
+                        "name": "tecnickcom/tc-lib-barcode",
+                        "version": "1.15.4",
+                        "version_normalized": "1.15.4.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/tecnickcom/tc-lib-barcode.git",
+                                "reference": "34b0224f71ebfe83adcef9f14f3d81965fb55493"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/tecnickcom/tc-lib-barcode/zipball/34b0224f71ebfe83adcef9f14f3d81965fb55493",
+                                "reference": "34b0224f71ebfe83adcef9f14f3d81965fb55493",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "php": ">=5.4",
+                                "tecnickcom/tc-lib-color": "^1.12.1"
+                        },
+                        "require-dev": {
+                                "apigen/apigen": "^4.1.2",
+                                "bartlett/php-compatinfo": "^5.0.0",
+                                "pdepend/pdepend": "^2.2.2",
+                                "phploc/phploc": "^2.1.5|^3.0.0",
+                                "phpmd/phpmd": "^2.3.2",
+                                "phpunit/phpunit": "4.8.19|^5.0.0",
+                                "sebastian/phpcpd": "^2.0.2",
+                                "squizlabs/php_codesniffer": "^2.5.0|^3.0.0"
+                        },
+                        "time": "2016-11-17T18:13:54+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "Com\\Tecnick\\Barcode\\": "src"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "LGPL-3.0"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "Nicola Asuni",
+                                        "email": "info@tecnick.com",
+                                        "role": "lead"
+                                }
+                        ],
+                        "description": "PHP library to generate linear and bidimensional barcodes",
+                        "homepage": "http://www.tecnick.com",
+                        "keywords": [
+                                "3 of 9",
+                                "ANSI MH10.8M-1983",
+                                "CBC",
+                                "CODABAR",
+                                "CODE 11",
+                                "CODE 128 A B C",
+                                "CODE 39",
+                                "CODE 93",
+                                "EAN 13",
+                                "EAN 8",
+                                "ECC200",
+                                "Intelligent Mail Barcode",
+                                "Interleaved 2 of 5",
+                                "KIX",
+                                "Klant",
+                                "MSI",
+                                "Onecode",
+                                "PHARMACODE",
+                                "PHARMACODE TWO-TRACKS",
+                                "POSTNET",
+                                "RMS4CC",
+                                "Standard 2 of 5",
+                                "UPC-A",
+                                "UPC-E",
+                                "USD-3",
+                                "USPS-B-3200",
+                                "USS-93",
+                                "barcode",
+                                "datamatrix",
+                                "pdf417",
+                                "planet",
+                                "qr-code",
+                                "royal mail",
+                                "tc-lib-barcode",
+                                "upc"
+                        ],
+                        "support": {
+                                "issues": "https://github.com/tecnickcom/tc-lib-barcode/issues",
+                                "source": "https://github.com/tecnickcom/tc-lib-barcode/tree/master"
+                        },
+                        "install-path": "../tecnickcom/tc-lib-barcode"
+                },
+                {
+                        "name": "tecnickcom/tc-lib-color",
+                        "version": "1.14.39",
+                        "version_normalized": "1.14.39.0",
+                        "source": {
+                                "type": "git",
+                                "url": "https://github.com/tecnickcom/tc-lib-color.git",
+                                "reference": "f7a414e7ddbdcd98105506ca1eecc68d4820fb89"
+                        },
+                        "dist": {
+                                "type": "zip",
+                                "url": "https://api.github.com/repos/tecnickcom/tc-lib-color/zipball/f7a414e7ddbdcd98105506ca1eecc68d4820fb89",
+                                "reference": "f7a414e7ddbdcd98105506ca1eecc68d4820fb89",
+                                "shasum": ""
+                        },
+                        "require": {
+                                "ext-pcre": "*",
+                                "php": ">=5.3"
+                        },
+                        "require-dev": {
+                                "pdepend/pdepend": "2.13.0",
+                                "phpmd/phpmd": "2.13.0",
+                                "phpunit/phpunit": "10.1.2 || 9.6.7 || 8.5.31 || 7.5.20 || 6.5.14 || 5.7.27 || 4.8.36",
+                                "squizlabs/php_codesniffer": "3.7.2 || 2.9.2"
+                        },
+                        "time": "2023-10-23T09:28:20+00:00",
+                        "type": "library",
+                        "installation-source": "dist",
+                        "autoload": {
+                                "psr-4": {
+                                        "Com\\Tecnick\\Color\\": "src"
+                                }
+                        },
+                        "notification-url": "https://packagist.org/downloads/",
+                        "license": [
+                                "LGPL-3.0-or-later"
+                        ],
+                        "authors": [
+                                {
+                                        "name": "Nicola Asuni",
+                                        "email": "info@tecnick.com",
+                                        "role": "lead"
+                                }
+                        ],
+                        "description": "PHP library to manipulate various color representations",
+                        "homepage": "http://www.tecnick.com",
+                        "keywords": [
+                                "cmyk",
+                                "color",
+                                "colors",
+                                "colour",
+                                "colours",
+                                "hsl",
+                                "hsla",
+                                "javascript",
+                                "rgb",
+                                "rgba",
+                                "tc-lib-color",
+                                "web"
+                        ],
+                        "support": {
+                                "issues": "https://github.com/tecnickcom/tc-lib-color/issues",
+                                "source": "https://github.com/tecnickcom/tc-lib-color/tree/1.14.39"
+                        },
+                        "funding": [
+                                {
+                                        "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&currency_code=GBP&business=paypal@tecnick.com&item_name=donation%20for%20tc-lib-color%20project",
+                                        "type": "custom"
+                                }
+                        ],
+                        "install-path": "../tecnickcom/tc-lib-color"
+                }
+        ],
+        "dev": true,
+        "dev-package-names": []
+}

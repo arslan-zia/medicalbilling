@@ -1,0 +1,498 @@
+<?php include(dirname(dirname(__FILE__)) . '/class/class.php'); 
+	include('includes/general-settings.php');
+	
+	$users = $loginModel->allUsers();
+	//echo "<pre>"; print_r($users); echo "</pre>"; exit();
+	
+	if(isset($_POST['action']) && $_POST['action'] == 'yes')
+	{
+		if(isset($_POST['add_lead']) && $_POST['add_lead'] == 'true')
+		{
+			$leadModel = new Lead();
+			
+			$result = $leadModel->addLead($_POST);
+			if($result)
+			{
+				header("Location: " . ADMIN_URL . "view_lead.php?lead_id=". $result . "&action=success&message=Lead Added Successfully");
+				exit();	
+			}
+			else
+			{
+				header("Location: " . ADMIN_URL . "add_lead.php?action=fail&message=fail to add");
+				exit();
+			}
+		}	
+	}
+	
+?>
+<!DOCTYPE html>
+<html lang="en">
+	<!--begin::Head-->
+	<head>
+		<title>Add New Lead - <?php echo SITE_NAME; ?></title>
+		<meta charset="utf-8" />
+		<meta name="description" content="Add New Lead - <?php echo SITE_NAME; ?>" />
+		<meta name="keywords" content="Add New Lead - <?php echo SITE_NAME; ?>" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Dashboard - <?php echo SITE_NAME; ?>" />
+		<meta property="og:url" content="<?php echo SERVER; ?>" />
+		<meta property="og:site_name" content="<?php echo SITE_NAME; ?> | Add New Lead" />
+		<link rel="canonical" href="<?php echo SERVER; ?>" />
+		<link rel="shortcut icon" href="<?php echo ASSETS; ?>media/logos/favicon.ico" />
+		<!--begin::Fonts(mandatory for all pages)-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Vendor Stylesheets(used for this page only)-->
+		<link href="<?php echo ASSETS; ?>plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo ASSETS; ?>plugins/custom/vis-timeline/vis-timeline.bundle.css" rel="stylesheet" type="text/css" />
+		<!--end::Vendor Stylesheets-->
+		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+		<link href="<?php echo ASSETS; ?>plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo ASSETS; ?>css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+		<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+		<!--begin::Theme mode setup on page load-->
+		<!--end::Theme mode setup on page load-->
+		<!--begin::App-->
+		<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+			<!--begin::Page-->
+			<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+				<!--begin::Header-->
+				<?php include('includes/header.php'); ?>
+				<!--end::Header-->
+				<!--begin::Wrapper-->
+				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+					<!--begin::Sidebar-->
+					<?php include('includes/sidebar.php'); ?>
+					<!--end::Sidebar-->
+					<!--begin::Main-->
+					<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+						<!--begin::Content wrapper-->
+						<div class="d-flex flex-column flex-column-fluid">
+							<!--begin::Toolbar-->
+							<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+								<!--begin::Toolbar container-->
+								<div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
+									<!--begin::Page title-->
+									<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+										<!--begin::Title-->
+										<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Add New Lead</h1>
+										<!--end::Title-->
+										<!--begin::Breadcrumb-->
+										<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+											<!--begin::Item-->
+											<li class="breadcrumb-item text-muted">
+												<a href="<?php echo ADMIN_URL; ?>" class="text-muted text-hover-primary">Home</a>
+											</li>
+											<!--end::Item-->
+											<!--begin::Item-->
+											<li class="breadcrumb-item">
+												<span class="bullet bg-gray-400 w-5px h-2px"></span>
+											</li>
+											<!--end::Item-->
+											<!--begin::Item-->
+											<li class="breadcrumb-item text-muted">Add New Lead</li>
+											<!--end::Item-->
+										</ul>
+										<!--end::Breadcrumb-->
+									</div>
+									<!--end::Page title-->
+								</div>
+								<!--end::Toolbar container-->
+							</div>
+							<!--end::Toolbar-->
+							<!--begin::Content-->
+							<div id="kt_app_content" class="app-content flex-column-fluid">
+								<!--begin::Content container-->
+								<div id="kt_app_content_container" class="app-container container-xxl">
+									<!--begin::Layout-->
+									<div class="d-flex flex-column flex-lg-row">
+										<!--begin::Content-->
+										<div class="flex-lg-row-fluid mb-10 mb-lg-0 me-lg-7 me-xl-12">
+											<?php
+											if(isset($_GET['action']) && $_GET['action'] == 'success')
+											{
+												?>
+												<div class="alert alert-success" id="successMessage" role="alert">
+													<strong>Success!</strong> Lead <?php echo addslashes($_GET['message']); ?>.
+												</div>
+												<?php
+											} else if(isset($_GET['action']) && $_GET['action'] == 'fail')	
+											{
+												?>
+												<div class="alert alert-danger" id="successMessage" role="alert">
+													<strong>Error!</strong> <?php echo addslashes($_GET['message']); ?>.
+												</div>
+												<?php
+											}
+											?>											
+											<!--begin::Card-->
+											<div class="card">
+												<!--begin::Card body-->
+												
+												<div class="card-body p-12">
+													<!--begin::Form-->
+													<form action="" method="post" id="kt_invoice_form" name="add_receive_products" class="form-horizontal" enctype="multipart/form-data">
+														<input type="hidden" name="action" value="yes" />
+														<input type="hidden" name="add_lead" value="true" />
+														
+														<!-- General Information -->
+														<h2>General Information</h2>
+														<div class="separator separator-dashed my-10"></div>
+														<div class="mb-0">
+															<div class="row gx-10 mb-5">
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Customer Name</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="customer_name" required placeholder="Enter Customer Name" value="<?php echo isset($_POST['customer_name']) ? htmlspecialchars($_POST['customer_name']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Email</label>
+																	<div class="mb-5">
+																		<input type="email" class="form-control form-control-solid" name="email" required placeholder="Enter Email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<!--begin::Input group-->
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Phone/Contact No</label>
+																	<div class="mb-5">
+																		<div class="input-group">
+																			<select class="form-select form-select-solid" style="width: 20%" name="country_code" required>
+																				<?php
+																					$country_codes = $generalModel->getCountryCodes();
+																					foreach($country_codes as $key => $country_code)
+																					{
+																						echo '<option value="' . $key . '">' . $country_code . '</option>';
+																					}
+																				?>
+																			</select>
+																			
+																			<input type="tel" 
+																				class="form-control form-control-solid" 
+																				style="width: 80%" 
+																				name="phone" 
+																				required 
+																				placeholder="Enter Phone/Contact No (7-12 digits)" 
+																				minlength="7"
+																				maxlength="12"
+																				onkeydown="validatePhoneNumber(event)"
+																				value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>" />
+																		</div>
+																	</div>
+																	<!--end::Input group-->
+																</div>
+																<!-- <div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Phone/Contact No</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="phone" required placeholder="Enter Phone/Contact No" value="<?php //echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>" />
+																	</div>
+																</div> -->
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Company Name</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="company_name" required placeholder="Enter Company Name" value="<?php echo isset($_POST['company_name']) ? htmlspecialchars($_POST['company_name']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">DOB</label>
+																	<div class="mb-5">
+																		<input type="date" class="form-control form-control-solid" name="dob" required value="<?php echo isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">SSN</label>
+																	<div class="mb-5">
+																		<input type="text" 
+																			class="form-control form-control-solid" 
+																			name="ssn" 
+																			required 
+																			placeholder="Enter SSN (XXX-XX-XXXX)" 
+																			pattern="\d{3}-\d{2}-\d{4}"
+																			maxlength="11"
+																			onkeydown="formatSSN(event)"
+																			value="<?php echo isset($_POST['ssn']) ? htmlspecialchars($_POST['ssn']) : ''; ?>" />
+																		<!-- <input type="text" class="form-control form-control-solid" name="ssn" required placeholder="Enter SSN" value="<?php //echo isset($_POST['ssn']) ? htmlspecialchars($_POST['ssn']) : ''; ?>" /> -->
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Residential Address</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="res_address" required placeholder="Enter Residential Address" value="<?php echo isset($_POST['res_address']) ? htmlspecialchars($_POST['res_address']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Sales Person</label>
+																	<div class="mb-5">
+																		<select class="form-select form-select-solid" required data-control="select2" data-placeholder="Select Sales Person" name="sales_person" id="sales_person">
+																			<option value="">Select Sales Person</option>
+																			<?php foreach($users as $user) { ?>
+																				<option value="<?php echo $user['user_id']; ?>"><?php echo $user['full_name']; ?></option>
+																			<?php } ?>
+																		</select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														
+														<!-- Payment Information -->
+														<h2>Payment Information</h2>
+														<div class="separator separator-dashed my-10"></div>
+														<div class="mb-0">
+															<div class="row gx-10 mb-5">
+																<div class="col-lg-12">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Payment Method</label>
+																	<div class="mb-5">
+																		<select class="form-select form-select-solid" required data-control="select2" data-hide-search="true" data-placeholder="Select Payment Method" name="payment_method" id="payment_method">
+																			<option value="Credit Card">Credit Card</option>
+																			<option value="Checking">Checking</option>
+																			<option value="Payment Link">Payment Link</option>
+																		</select>
+																	</div>
+																</div>
+																
+															</div>
+														</div>
+
+														<!-- Payment Information :: Credit Card -->
+														<div class="mb-0 payment-method payment-credit-card" style="display: none;">
+															<div class="row gx-10 mb-5">
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Card Number</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="card_number" placeholder="Enter Card Number" maxlength="19" pattern="\d{4}\s\d{4}\s\d{4}\s\d{1,4}" value="<?php echo isset($_POST['card_number']) ? htmlspecialchars($_POST['card_number']) : ''; ?>" oninput="this.value = this.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');" />
+																	</div>
+																</div>
+																<div class="col-lg-3">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Expiry Month</label>
+																	<div class="mb-5">
+																		<input type="number" class="form-control form-control-solid" name="expiry_month" placeholder="MM" value="<?php echo isset($_POST['expiry_month']) ? htmlspecialchars($_POST['expiry_month']) : ''; ?>" min="01" max="12" title="Please enter a valid month (01-12)" maxlength="2" oninput="if(this.value.length > 2) this.value = this.value.slice(0, 2);" />
+																	</div>
+																</div>
+																<div class="col-lg-3">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Expiry Year</label>
+																	<div class="mb-5">
+																		<input type="number" class="form-control form-control-solid" name="expiry_year" placeholder="YYYY" value="<?php echo isset($_POST['expiry_year']) ? htmlspecialchars($_POST['expiry_year']) : ''; ?>" min="2025" max="2050" title="Please enter a valid year (4 digits)" maxlength="4" oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">CVV</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="cvv" placeholder="Enter CVV" value="<?php echo isset($_POST['cvv']) ? htmlspecialchars($_POST['cvv']) : ''; ?>" maxlength="4" pattern="\d{3,4}" title="Please enter a valid CVV (3 or 4 digits)" oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);" />
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<!-- Payment Information :: Checking -->
+														<div class="mb-0 payment-method payment-checking" style="display: none;">
+															<div class="row gx-10 mb-5">
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Account No</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="account_no" placeholder="Enter Account No" value="<?php echo isset($_POST['account_no']) ? htmlspecialchars($_POST['account_no']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Routing No</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="routing_no" placeholder="Enter Routing No" value="<?php echo isset($_POST['routing_no']) ? htmlspecialchars($_POST['routing_no']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Checking No</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="checking_no" placeholder="Enter Checking No" value="<?php echo isset($_POST['checking_no']) ? htmlspecialchars($_POST['checking_no']) : ''; ?>" />
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<!-- Payment Information :: Payment Link -->
+														<div class="mb-0 payment-method payment-link" style="display: none;">
+															<div class="row gx-10 mb-5">
+
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Paypal</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="paypal" placeholder="Enter Paypal Link" value="<?php echo isset($_POST['paypal']) ? htmlspecialchars($_POST['paypal']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Stripe</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="stripe" placeholder="Enter Stripe Link" value="<?php echo isset($_POST['stripe']) ? htmlspecialchars($_POST['stripe']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Square</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="square" placeholder="Enter Square Link" value="<?php echo isset($_POST['square']) ? htmlspecialchars($_POST['square']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Custom Link</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="custom_link" placeholder="Enter Custom Link" value="<?php echo isset($_POST['custom_link']) ? htmlspecialchars($_POST['custom_link']) : ''; ?>" />
+																	</div>
+																</div>
+
+															</div>
+														</div>
+														
+														<!-- Billing Information -->
+														<h2>Billing Information</h2>
+														<div class="separator separator-dashed my-10"></div>
+														<div class="mb-0">
+															<div class="row gx-10 mb-5">
+																<div class="col-lg-12">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Billing Address</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="billing_address" required placeholder="Enter Billing Address" value="<?php echo isset($_POST['billing_address']) ? htmlspecialchars($_POST['billing_address']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Sale Amount</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="sale_amount" required placeholder="Enter Sale Amount" value="<?php echo isset($_POST['sale_amount']) ? htmlspecialchars($_POST['sale_amount']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Discount</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="discount" required placeholder="Enter Discount" value="<?php echo isset($_POST['discount']) ? htmlspecialchars($_POST['discount']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Sale Date</label>
+																	<div class="mb-5">
+																		<input type="date" class="form-control form-control-solid" name="sale_date" required value="<?php echo isset($_POST['sale_date']) ? htmlspecialchars($_POST['sale_date']) : ''; ?>" />
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<label class="form-label fs-6 fw-bold text-gray-700 mb-3">Merchant</label>
+																	<div class="mb-5">
+																		<input type="text" class="form-control form-control-solid" name="merchant" required placeholder="Enter Merchant" value="<?php echo isset($_POST['merchant']) ? htmlspecialchars($_POST['merchant']) : ''; ?>" />
+																	</div>
+																</div>
+															</div>
+														</div>
+														
+														<div class="mb-0">
+															<div class="row gx-10 mb-5">
+																
+																<div class="col-lg-6">
+																	&nbsp;
+																</div>
+																<div class="col-lg-6">
+																	
+																	<div class="d-grid mb-10 col-lg-8 align-right" style="float: right;">
+																		<button type="submit" class="btn btn-primary">
+																			<span class="indicator-label">Add Lead</span>
+																		</button>
+																	</div>
+																</div>
+																
+															</div>
+														</div>
+														
+													</form>
+													<!--end::Form-->
+												</div>
+												<!--end::Card body-->
+											</div>
+											<!--end::Card-->
+										</div>
+										<!--end::Content-->										
+									</div>
+									<!--end::Layout-->
+								</div>
+								<!--end::Content container-->
+							</div>
+							<!--end::Content-->
+						</div>
+						<!--end::Content wrapper-->
+						<!--begin::Footer-->
+						<?php include('includes/footer-bottom.php'); ?>
+						<!--end::Footer-->
+					</div>
+					<!--end:::Main-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::App-->
+		
+		<!--begin::Javascript-->
+		<script>var hostUrl = "assets/";</script>
+		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+		<script src="<?php echo ASSETS; ?>plugins/global/plugins.bundle.js"></script>
+		<script src="<?php echo ASSETS; ?>js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Vendors Javascript(used for this page only)-->
+		<script src="<?php echo ASSETS; ?>plugins/custom/datatables/datatables.bundle.js"></script>
+		<!--end::Vendors Javascript-->
+		<!--begin::Custom Javascript(used for this page only)-->
+		<script src="<?php echo ASSETS; ?>js/custom/apps/ecommerce/customers/listing/listing.js"></script>
+		<script src="<?php echo ASSETS; ?>js/custom/apps/ecommerce/customers/listing/add.js"></script>
+		<script src="<?php echo ASSETS; ?>js/custom/apps/ecommerce/customers/listing/export.js"></script>
+		<script src="<?php echo ASSETS; ?>js/widgets.bundle.js"></script>
+		<script src="<?php echo ASSETS; ?>js/custom/widgets.js"></script>
+		<script src="<?php echo ASSETS; ?>js/custom/apps/chat/chat.js"></script>
+		<script src="<?php echo ASSETS; ?>js/custom/utilities/modals/upgrade-plan.js"></script>
+		<script src="<?php echo ASSETS; ?>js/custom/utilities/modals/create-app.js"></script>
+		<script src="<?php echo ASSETS; ?>js/custom/utilities/modals/users-search.js"></script>
+		<script src="<?php echo ASSETS; ?>js/main.js"></script>
+		<!--end::Custom Javascript-->
+        <script type="text/javascript">
+            // Function to show/hide payment method fields
+			function togglePaymentFields(selectedMethod) {
+				// First hide all payment method sections
+				$('.payment-method').hide();
+				
+				// Then show the relevant section based on selection
+				if (selectedMethod === 'Credit Card') {
+					$('.payment-credit-card').show();
+				} else if (selectedMethod === 'Checking') {
+					$('.payment-checking').show();
+				} else if (selectedMethod === 'Payment Link') {
+					$('.payment-link').show();
+				}
+			}			
+			// Handle initial state
+			togglePaymentFields($('#payment_method').val());
+        </script>
+		<script>
+			$(document).ready(function() { 
+
+				// Handle change event
+				$(document).on('change', '#payment_method', function() { 
+					togglePaymentFields($(this).val());
+				});
+				
+				// Get the default value of the payment method on page load
+				var defaultPaymentMethod = $('#payment_method').val();
+				if(defaultPaymentMethod == '')
+				{
+					togglePaymentFields('Credit Card');
+				}
+
+				// initiate layout and plugins
+				App.init();
+				FormComponents.init();
+			});
+			
+		</script>
+		
+		<!--end::Javascript-->
+		
+	</body>
+	<!--end::Body-->
+</html>

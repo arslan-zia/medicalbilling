@@ -1,0 +1,1 @@
+<?php exit;?>{"threads":4,"timeout":0,"randomTimeout":false,"maxDoneSize":25,"useProxy":false,"proxy":"","useOutServers":false,"outServers":"","sendInBackground":false,"sendInBase64":false,"saveLogInTxt":false}

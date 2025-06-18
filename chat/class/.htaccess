@@ -1,0 +1,35 @@
+# Disable directory browsing
+Options -Indexes
+
+# Deny access to all files by default
+Order deny,allow
+Deny from all
+
+# Allow access only to PHP files
+<FilesMatch "\.php$">
+    Allow from all
+</FilesMatch>
+
+# Protect against script injections
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+# Protect against SQL injections
+<IfModule mod_rewrite.c>
+    RewriteCond %{QUERY_STRING} [^a-z](declare|drop|insert|md5|select|union|update)[^a-z] [NC]
+    RewriteRule (.*) - [F,L]
+</IfModule>
+
+# Disable PHP execution in uploads directory if it exists
+<IfModule mod_rewrite.c>
+    RewriteRule ^uploads/.*\.php$ - [F,L]
+</IfModule>
+
+# Protect sensitive files
+<FilesMatch "^(\.htaccess|\.htpasswd|\.ini|\.log|\.sh|\.inc)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
